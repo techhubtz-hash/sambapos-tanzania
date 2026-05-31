@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SambaPOS Tanzania — Free Demo | The Hub Connect</title>
+<meta name="description" content="SambaPOS restaurant POS system in Tanzania. Kitchen printing, table management & real-time reports. Free demo in Dar es Salaam, Arusha & Zanzibar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #384b5f;
+  --navy-dk: #243242;
+  --navy-lt: #4e6578;
+  --orange:  #e8520d;
+  --orange-lt: #fff3ed;
+  --orange-md: #f97316;
+  --wa:      #25D366;
+  --wa-dk:   #1aab55;
+  --cream:   #faf9f7;
+  --white:   #ffffff;
+  --text:    #1a1a2e;
+  --muted:   #64748b;
+  --border:  #e2e8f0;
+  --shadow:  0 4px 24px rgba(56,75,95,0.10);
+  --shadow-lg: 0 12px 48px rgba(56,75,95,0.15);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3,h4,.stat-num,.logo-text { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ── UTILS ── */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 80px 0; }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 5px 14px;
+  border-radius: 20px; margin-bottom: 18px;
+}
+.tag-orange { background: var(--orange-lt); color: var(--orange); border: 1px solid rgba(232,82,13,0.2); }
+.tag-navy   { background: rgba(56,75,95,0.08); color: var(--navy); border: 1px solid rgba(56,75,95,0.15); }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.nav-inner {
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 16px;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-icon {
+  width: 36px; height: 36px;
+  background: var(--navy); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-icon svg { width: 20px; height: 20px; }
+.logo-text { font-size: 17px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
+.logo-text span { color: var(--orange); }
+.logo-by { font-size: 11px; color: var(--muted); font-weight: 400; display: block; font-family: 'DM Sans', sans-serif; }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-link { font-size: 14px; color: var(--muted); font-weight: 500; display: none; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; border: none; font-family: 'Plus Jakarta Sans', sans-serif; }
+.btn-wa { background: var(--wa); color: white; }
+.btn-wa:hover { background: var(--wa-dk); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,211,102,0.35); }
+.btn-navy { background: var(--navy); color: white; }
+.btn-navy:hover { background: var(--navy-dk); }
+.btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--navy); }
+.btn-lg { padding: 15px 32px; font-size: 16px; border-radius: 12px; }
+.btn-xl { padding: 18px 40px; font-size: 18px; border-radius: 14px; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, var(--navy-dk) 0%, var(--navy) 60%, #2d5a4e 100%);
+  padding: 88px 0 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; }
+.hero-content { color: white; }
+.hero h1 {
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -1.5px; margin-bottom: 20px;
+}
+.hero h1 em { color: var(--orange-md); font-style: normal; }
+.hero p { font-size: 18px; color: rgba(255,255,255,0.72); margin-bottom: 36px; max-width: 480px; line-height: 1.7; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.45); }
+.hero-visual {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px; padding: 28px;
+  backdrop-filter: blur(8px);
+}
+.mock-topbar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 18px; padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.mock-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mock-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500; margin-left: 4px; }
+.mock-tables { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.mock-table {
+  border-radius: 10px; padding: 12px 8px; text-align: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.mt-occ  { background: rgba(232,82,13,0.85); }
+.mt-free { background: rgba(37,211,102,0.2); border: 1px solid rgba(37,211,102,0.3); }
+.mt-wait { background: rgba(251,191,36,0.2); border: 1px solid rgba(251,191,36,0.3); }
+.mock-table .t-num { font-size: 13px; font-weight: 700; color: white; }
+.mock-table .t-lbl { font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 3px; }
+.mock-receipt {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px; padding: 12px 14px;
+}
+.mock-receipt-row {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: rgba(255,255,255,0.65); padding: 3px 0;
+  font-family: 'DM Mono', monospace;
+}
+.mock-receipt-total {
+  display: flex; justify-content: space-between;
+  font-size: 13px; font-weight: 700; color: white;
+  padding: 8px 0 0; margin-top: 6px;
+  border-top: 1px dashed rgba(255,255,255,0.15);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.mock-mpesa {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 10px; background: rgba(37,211,102,0.12);
+  border: 1px solid rgba(37,211,102,0.25); border-radius: 8px; padding: 8px 12px;
+}
+.mpesa-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--wa); flex-shrink: 0; }
+.mpesa-text { font-size: 12px; color: rgba(255,255,255,0.7); }
+
+/* ── STATS STRIP ── */
+.stats-strip {
+  background: var(--cream); border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border); padding: 32px 0;
+}
+.stats-grid { display: flex; justify-content: center; gap: 0; flex-wrap: wrap; }
+.stat-item {
+  flex: 1; min-width: 130px; max-width: 200px;
+  text-align: center; padding: 0 24px;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 32px; font-weight: 800; color: var(--navy); letter-spacing: -1px; }
+.stat-num span { color: var(--orange); }
+.stat-lbl { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+/* ── PROBLEMS ── */
+.problems { background: white; }
+.section-head { text-align: center; margin-bottom: 56px; }
+.section-head h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 14px; }
+.section-head p { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto; }
+.prob-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.prob-card {
+  padding: 24px; border: 1.5px solid var(--border);
+  border-radius: 16px; background: white; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.prob-card:hover { border-color: var(--orange); box-shadow: var(--shadow); }
+.prob-emoji { font-size: 28px; margin-bottom: 14px; }
+.prob-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+.prob-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* ── FEATURES ── */
+.features { background: var(--cream); }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.feat-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px 24px 22px;
+  display: flex; gap: 16px; align-items: flex-start;
+  transition: box-shadow 0.2s;
+}
+.feat-card:hover { box-shadow: var(--shadow); }
+.feat-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: 12px; background: rgba(56,75,95,0.07);
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.feat-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.feat-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.feat-badge {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 6px; margin-top: 8px;
+  background: var(--orange-lt); color: var(--orange);
+}
+
+/* ── HOW IT WORKS ── */
+.how { background: white; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; counter-reset: steps; }
+.step { padding: 32px 28px; border-right: 1px solid var(--border); position: relative; }
+.step:last-child { border-right: none; }
+.step-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--navy); color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+}
+.step h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.step-arrow {
+  position: absolute; right: -14px; top: 32px;
+  width: 28px; height: 28px; background: var(--orange-lt);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--orange); z-index: 1;
+}
+.step:last-child .step-arrow { display: none; }
+
+/* ── CITIES ── */
+.cities { background: var(--navy); color: white; padding: 56px 0; }
+.cities-inner { display: flex; justify-content: center; gap: 0; flex-wrap: wrap; }
+.city {
+  flex: 1; min-width: 180px; max-width: 280px;
+  text-align: center; padding: 28px 24px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.city:last-child { border-right: none; }
+.city-flag { font-size: 32px; margin-bottom: 10px; }
+.city h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.city p { font-size: 13px; color: rgba(255,255,255,0.5); }
+.city-badge {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px; margin-top: 8px;
+  background: rgba(37,211,102,0.15); color: #4ade80; border: 1px solid rgba(37,211,102,0.2);
+}
+
+/* ── DEMO CTA ── */
+.demo-cta {
+  background: linear-gradient(135deg, var(--orange) 0%, #c94308 100%);
+  padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+}
+.demo-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+.demo-cta-inner { position: relative; }
+.demo-cta h2 { font-size: clamp(28px, 4vw, 46px); font-weight: 800; color: white; letter-spacing: -1px; margin-bottom: 14px; line-height: 1.15; }
+.demo-cta p { font-size: 18px; color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; }
+.demo-steps-row { display: flex; justify-content: center; gap: 48px; margin-bottom: 44px; flex-wrap: wrap; }
+.d-step { text-align: center; }
+.d-step-n {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.4);
+  color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 16px;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+}
+.d-step p { font-size: 13px; color: rgba(255,255,255,0.75); max-width: 100px; }
+.btn-wa-xl {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: white; color: var(--navy-dk);
+  padding: 18px 40px; border-radius: 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2); transition: all 0.2s;
+}
+.btn-wa-xl:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+.btn-wa-xl svg { width: 24px; height: 24px; fill: var(--wa); }
+.demo-note { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 18px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy-dk); color: rgba(255,255,255,0.5);
+  padding: 32px 0; text-align: center; font-size: 13px;
+}
+footer a { color: rgba(255,255,255,0.65); }
+footer strong { color: rgba(255,255,255,0.8); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .stat-item { min-width: 100px; padding: 0 12px; }
+  .stat-num { font-size: 24px; }
+  .step { border-right: none; border-bottom: 1px solid var(--border); }
+  .step:last-child { border-bottom: none; }
+  .step-arrow { display: none; }
+  .nav-link { display: none; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .hero { padding: 56px 0 48px; }
+  .section { padding: 56px 0; }
+  .btn-xl { padding: 15px 28px; font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="3" width="16" height="4" rx="1" fill="white" opacity="0.4"/>
+            <rect x="4" y="9" width="16" height="4" rx="1" fill="white" opacity="0.7"/>
+            <rect x="4" y="15" width="16" height="4" rx="1" fill="white"/>
+          </svg>
+        </div>
+        <div>
+          <div class="logo-text">Samba<span>POS</span></div>
+          <span class="logo-by">by The Hub Connect</span>
+        </div>
+      </div>
+      <div class="nav-right">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#cities" class="nav-link">Locations</a>
+        <a href="https://wa.me/255746912700?text=Habari%2C%20nataka%20kujua%20zaidi%20kuhusu%20SambaPOS%20na%20kupata%20demo%20bure." class="btn btn-wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Free Demo
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="tag tag-orange">🇹🇿 SambaPOS Tanzania</div>
+        <h1>Run your restaurant<br>the <em>smart way.</em></h1>
+        <p>Automate orders, kitchen printing, multiple payment types and real-time sales reports — all from one system your team can learn in a day.</p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/255746912700?text=Habari%2C%20nataka%20kupata%20demo%20ya%20bure%20ya%20SambaPOS%20kwa%20biashara%20yangu." class="btn btn-wa btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Book a free demo
+          </a>
+          <a href="#features" class="btn btn-outline btn-lg" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.25);">See features ↓</a>
+        </div>
+        <p class="hero-note">✔ No monthly fees &nbsp;·&nbsp; ✔ Works offline &nbsp;·&nbsp; ✔ Cash, card & mobile money</p>
+      </div>
+      <!-- MOCK POS UI -->
+      <div class="hero-visual">
+        <div class="mock-topbar">
+          <div class="mock-dot" style="background:#ff5f57"></div>
+          <div class="mock-dot" style="background:#ffbd2e"></div>
+          <div class="mock-dot" style="background:#28c840"></div>
+          <span class="mock-title">SambaPOS — Floor Plan</span>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:10px;font-family:'DM Sans',sans-serif;">DINING ROOM · 6 tables</div>
+        <div class="mock-tables">
+          <div class="mock-table mt-occ"><div class="t-num">T1</div><div class="t-lbl">Occupied</div></div>
+          <div class="mock-table mt-occ"><div class="t-num">T2</div><div class="t-lbl">Occupied</div></div>
+          <div class="mock-table mt-free"><div class="t-num">T3</div><div class="t-lbl">Available</div></div>
+          <div class="mock-table mt-wait"><div class="t-num">T4</div><div class="t-lbl">Waiting</div></div>
+          <div class="mock-table mt-occ"><div class="t-num">T5</div><div class="t-lbl">Occupied</div></div>
+          <div class="mock-table mt-free"><div class="t-num">T6</div><div class="t-lbl">Available</div></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px;font-family:'DM Sans',sans-serif;">TABLE 1 · CURRENT ORDER</div>
+        <div class="mock-receipt">
+          <div class="mock-receipt-row"><span>Grilled Chicken</span><span>TSh 18,000</span></div>
+          <div class="mock-receipt-row"><span>Pilau Rice x2</span><span>TSh 12,000</span></div>
+          <div class="mock-receipt-row"><span>Soda x3</span><span>TSh 6,000</span></div>
+          <div class="mock-receipt-row"><span>Fresh Juice</span><span>TSh 5,000</span></div>
+          <div class="mock-receipt-total"><span>TOTAL</span><span>TSh 41,000</span></div>
+        </div>
+        <div class="mock-mpesa">
+          <div class="mpesa-dot"></div>
+          <span class="mpesa-text">Cash payment confirmed · TSh 41,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-lbl">Years proven globally</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0</div>
+        <div class="stat-lbl">Monthly subscription fees</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">✔</div>
+        <div class="stat-lbl">Mobile money ready</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">✔</div>
+        <div class="stat-lbl">Works offline</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-lbl">Cities · DSM, Arusha, Znz</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMS -->
+<section class="section problems">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag tag-orange">Sound familiar?</div>
+      <h2>These problems are costing<br>your restaurant money.</h2>
+      <p>Every day you run without a proper POS system, you're losing track of orders, cash, and customers.</p>
+    </div>
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="prob-emoji">📋</div>
+        <h3>Handwritten order chaos</h3>
+        <p>Orders get lost, misread by the kitchen, or mixed up between tables — costing you customers and your reputation.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-emoji">💸</div>
+        <h3>Cash you can't account for</h3>
+        <p>End of night and the numbers don't match. You don't know where the gap is — or which staff is responsible.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-emoji">⏱️</div>
+        <h3>Slow table service</h3>
+        <p>Waiters running back and forth to the kitchen instead of serving. Tables wait too long and leave unhappy.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-emoji">📊</div>
+        <h3>No real business data</h3>
+        <p>You don't know which dishes sell, what your peak hours are, or which staff are performing. Running blind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features" id="features">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag tag-navy">What SambaPOS does</div>
+      <h2>Everything your restaurant needs,<br>in one system.</h2>
+      <p>Built for restaurants, bars, cafés and hotels. Runs on any Windows PC or tablet you already own.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🖨️</div>
+        <div>
+          <h3>Kitchen order printing</h3>
+          <p>Orders sent directly to the kitchen printer the moment they're placed — no running, no shouting, no mistakes.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🪑</div>
+        <div>
+          <h3>Table management</h3>
+          <p>Visual floor plan, live table status, split bills, table transfers, and multiple waiters on one floor.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📱</div>
+        <div>
+          <h3>Multiple payment types</h3>
+          <p>Accept cash, bank card, and mobile money payments from a single screen. All transactions reconciled automatically at end of day.</p>
+          
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📈</div>
+        <div>
+          <h3>Real-time sales reports</h3>
+          <p>Daily revenue, best-selling items, staff performance, and hourly breakdowns — always available, always accurate.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🏨</div>
+        <div>
+          <h3>Hotel room charges</h3>
+          <p>Post restaurant and bar charges directly to hotel rooms. Perfect for lodges, guesthouses and full-service hotels.</p>
+          <span class="feat-badge">Hotels & lodges</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📦</div>
+        <div>
+          <h3>Stock & inventory tracking</h3>
+          <p>Monitor ingredient usage, set low-stock alerts, and reduce wastage with automated inventory deductions per order.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">👥</div>
+        <div>
+          <h3>Staff & shift management</h3>
+          <p>Multiple user roles with PIN login, individual sales tracking, and access control per staff level.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">💻</div>
+        <div>
+          <h3>Works on your hardware</h3>
+          <p>Runs on any Windows PC, laptop or touch screen tablet you already own. No expensive proprietary hardware needed.</p>
+          <span class="feat-badge">No new hardware</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag tag-orange">Getting started</div>
+      <h2>Up and running in 3 steps.</h2>
+      <p>Our team handles the entire setup and training. You focus on your restaurant.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>WhatsApp us to book</h3>
+        <p>Send us a message describing your restaurant type and size. We'll confirm a demo time that works for you.</p>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Free live demo</h3>
+        <p>We come to your location or do a remote demo showing SambaPOS configured for your specific business.</p>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>We set it up for you</h3>
+        <p>Once you decide to proceed, our team handles installation, menu setup, printer configuration, and staff training.</p>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Ongoing support</h3>
+        <p>Local support via WhatsApp and phone. We're in Tanzania — we understand your market and your needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CITIES -->
+<div class="cities" id="cities">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div class="tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.15);">Demo availability</div>
+      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:800;color:white;letter-spacing:-0.5px;">We come to you.</h2>
+    </div>
+    <div class="cities-inner">
+      <div class="city">
+        <div class="city-flag">🏙️</div>
+        <h3>Dar es Salaam</h3>
+        <p>Full on-site demos and installation across DSM</p>
+        <span class="city-badge">Available now</span>
+      </div>
+      <div class="city">
+        <div class="city-flag">🏔️</div>
+        <h3>Arusha</h3>
+        <p>Serving the northern safari corridor and CBD restaurants</p>
+        <span class="city-badge">Available now</span>
+      </div>
+      <div class="city">
+        <div class="city-flag">🌊</div>
+        <h3>Zanzibar</h3>
+        <p>Hotels, beach restaurants, and Stone Town venues</p>
+        <span class="city-badge">Available now</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEMO CTA -->
+<section class="demo-cta">
+  <div class="container demo-cta-inner">
+    <h2>Ready to see it in action?</h2>
+    <p>Get a free demo — we'll show you SambaPOS running live, configured for your exact type of business. No commitment, no cost.</p>
+    <div class="demo-steps-row">
+      <div class="d-step"><div class="d-step-n">1</div><p>WhatsApp us to book a slot</p></div>
+      <div class="d-step"><div class="d-step-n">2</div><p>Live demo at your venue</p></div>
+      <div class="d-step"><div class="d-step-n">3</div><p>You decide — zero pressure</p></div>
+    </div>
+    <a href="https://wa.me/255746912700?text=Habari%2C%20nataka%20kupata%20demo%20ya%20bure%20ya%20SambaPOS%20kwa%20biashara%20yangu.%20Nipo%20katika..." class="btn-wa-xl">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp us for a free demo
+    </a>
+    <p class="demo-note">+255 746 912 700 · Dar es Salaam · Arusha · Zanzibar</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <strong>The Hub Connect</strong> — Authorised SambaPOS Partner, Tanzania (rebranding to Afritech Ventures)
+      </div>
+      <div>
+        <a href="https://wa.me/255746912700">+255 746 912 700</a> &nbsp;·&nbsp; Dar es Salaam, Tanzania
+      </div>
+      <div>© 2026 The Hub Connect. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
